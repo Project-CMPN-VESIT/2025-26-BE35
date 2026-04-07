@@ -1,0 +1,12 @@
+# Environment variables
+.env
+
+# Database
+*.db
+
+# Backups
+backups/
+
+# IPFS
+predictions_for_ipfs/
+ipfs_upload_log.json

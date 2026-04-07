@@ -1,0 +1,16 @@
+Run order for aaaa/ (execute sequentially):
+
+01 - 01_micro_model.py           # Define lightweight micro model
+02 - 02_multi_task_model.py      # Define multi-task transformer model
+03 - 07_data_prep.py            # Prepare data / featurization (run early to generate sample data)
+04 - 03_train_micro_model.py     # Train micro model (uses data from 07)
+05 - 04_train_multi_task.py      # Train multi-task transformer
+06 - 05_inference_micro.py       # Run micro inference (after 03)
+07 - 06_inference_multi.py       # Run multi-task inference (after 04)
+08 - 08_utils.py                 # Utility functions used by scripts
+09 - 09_requirements.txt        # Python deps (install before running)
+10 - 10_README.md               # Human-readable instructions
+
+Notes:
+- Files are numbered to enforce the execution order; run them step-by-step.
+- Use `python` on Windows PowerShell to run `.py` files.
