@@ -1,0 +1,67 @@
+
+┌─────────────────────────────────────────────────────────────────┐
+│                    AUTOMATED WORKFLOW                            │
+└─────────────────────────────────────────────────────────────────┘
+
+DAY 0 (Initial Setup - MANUAL):
+================================
+python fetch_historical_data.py  → Get 2 years of data
+python train_multi_task.py       → Train initial model
+python setup_multitask_automation.py  → Install automation
+Right-click INSTALL_AUTOMATION.bat → Run as Admin
+
+DAY 1+ (FULLY AUTOMATED):
+=========================
+
+┌──────────────────────────────────────┐
+│  24/7 CONTINUOUS OPERATION           │
+├──────────────────────────────────────┤
+│  continuous_data_collector.py        │
+│  • Every 5 min: Fetch price          │
+│  • Every 30 min: Fetch sentiment     │
+│  • Appends to CSV files              │
+│  • Auto-restarts on failure          │
+└─────────────┬────────────────────────┘
+              ↓
+┌──────────────────────────────────────┐
+│  DAILY 1:30 AM                       │
+├──────────────────────────────────────┤
+│  merge_sentiment_and_prices.py       │
+│  • Combines historical + new data    │
+│  • Updates btc_unified_data.csv      │
+│  • Grows dataset daily               │
+└─────────────┬────────────────────────┘
+              ↓
+┌──────────────────────────────────────┐
+│  DAILY 2:00 AM                       │
+├──────────────────────────────────────┤
+│  auto_updater_multitask.py           │
+│  • Incremental training (10 min)    │
+│  • Fine-tunes on new data            │
+│  • Updates model checkpoint          │
+└─────────────┬────────────────────────┘
+              ↓
+┌──────────────────────────────────────┐
+│  DAILY 2:30 AM                       │
+├──────────────────────────────────────┤
+│  performance_tracker_multitask.py    │
+│  • Validates accuracy                │
+│  • Logs performance                  │
+│  • Triggers retrain if needed        │
+└──────────────────────────────────────┘
+
+┌──────────────────────────────────────┐
+│  WEEKLY SUNDAY 3:00 AM               │
+├──────────────────────────────────────┤
+│  train_multi_task.py                 │
+│  • Full retraining (30 min)          │
+│  • Uses all accumulated data         │
+│  • Resets to fresh model             │
+└──────────────────────────────────────┘
+
+ANYTIME (USER INITIATED):
+=========================
+python predict_multi_task.py
+• Get latest predictions
+• 7 time horizons
+• Price + Direction + Confidence

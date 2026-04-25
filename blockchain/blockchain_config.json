@@ -1,7 +1,0 @@
-{
-  "blockchain_enabled": true,
-  "ipfs_enabled": true,
-  "auto_upload_to_chain": false,
-  "use_local_ipfs": false,
-  "network": "sepolia"
-}

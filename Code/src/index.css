@@ -1,0 +1,384 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* IntelliDex Design System - Professional Crypto Trading Platform */
+
+@layer base {
+  :root {
+    /* Dark trader theme - refined deep navy */
+    --background: 230 45% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 231 35% 14%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 231 35% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 45 93% 56%;
+    --primary-foreground: 230 50% 8%;
+
+    --secondary: 231 32% 20%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 231 25% 18%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 45 93% 56%;
+    --accent-foreground: 230 50% 8%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 210 40% 98%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 230 50% 10%;
+
+    --border: 231 25% 22%;
+    --input: 231 25% 18%;
+    --ring: 45 93% 56%;
+
+    --radius: 0.75rem;
+
+    /* Chart colors */
+    --chart-bullish: 142 71% 45%;
+    --chart-bearish: 0 84% 60%;
+    --chart-neutral: 215 20% 55%;
+    --chart-prediction: 45 93% 56%;
+    --chart-volume: 217 91% 60%;
+
+    /* Confidence levels */
+    --confidence-high: 142 71% 45%;
+    --confidence-medium: 45 93% 56%;
+    --confidence-low: 0 84% 60%;
+
+    /* Enhanced Gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(45 93% 56%), hsl(38 92% 45%));
+    --gradient-gold-soft: linear-gradient(135deg, hsl(45 93% 56% / 0.15), hsl(38 92% 45% / 0.05));
+    --gradient-success: linear-gradient(135deg, hsl(142 71% 45%), hsl(142 71% 35%));
+    --gradient-card: linear-gradient(145deg, hsl(231 35% 16%), hsl(231 35% 12%));
+    --gradient-glow: radial-gradient(ellipse 80% 50% at 50% -20%, hsl(45 93% 56% / 0.12), transparent);
+    --gradient-mesh: radial-gradient(at 40% 20%, hsl(45 93% 56% / 0.08) 0px, transparent 50%),
+                     radial-gradient(at 80% 0%, hsl(217 91% 60% / 0.06) 0px, transparent 50%),
+                     radial-gradient(at 0% 50%, hsl(142 71% 45% / 0.04) 0px, transparent 50%);
+
+    /* Enhanced Shadows */
+    --shadow-glow: 0 0 60px -15px hsl(45 93% 56% / 0.25);
+    --shadow-glow-sm: 0 0 30px -10px hsl(45 93% 56% / 0.2);
+    --shadow-card: 0 4px 24px -4px hsl(230 50% 3% / 0.6);
+    --shadow-card-hover: 0 12px 40px -8px hsl(230 50% 3% / 0.7);
+    --shadow-inner-glow: inset 0 1px 0 0 hsl(0 0% 100% / 0.05);
+
+    --sidebar-background: 231 35% 11%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 45 93% 56%;
+    --sidebar-primary-foreground: 230 50% 10%;
+    --sidebar-accent: 231 32% 18%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 231 25% 20%;
+    --sidebar-ring: 45 93% 56%;
+  }
+
+  .dark {
+    --background: 230 45% 8%;
+    --foreground: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    background-image: var(--gradient-mesh);
+    background-attachment: fixed;
+  }
+
+  /* Enhanced scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full;
+    transition: background 0.2s;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/40;
+  }
+}
+
+@layer components {
+  /* Glass card effect */
+  .glass-card {
+    background: linear-gradient(145deg, 
+      hsl(var(--card) / 0.8), 
+      hsl(var(--card) / 0.6)
+    );
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border) / 0.5);
+    box-shadow: var(--shadow-card), var(--shadow-inner-glow);
+  }
+
+  .glass-card:hover {
+    border-color: hsl(var(--border) / 0.8);
+    box-shadow: var(--shadow-card-hover), var(--shadow-inner-glow);
+  }
+
+  /* Premium card with subtle gradient */
+  .premium-card {
+    position: relative;
+    background: linear-gradient(145deg, 
+      hsl(var(--card)), 
+      hsl(var(--card) / 0.95)
+    );
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+
+  .premium-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      hsl(var(--primary) / 0.3), 
+      transparent
+    );
+  }
+
+  .premium-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, hsl(var(--primary) / 0.04), transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Glow effects */
+  .glow-gold {
+    box-shadow: 0 0 50px -12px hsl(var(--primary) / 0.4);
+  }
+
+  .glow-success {
+    box-shadow: 0 0 40px -10px hsl(var(--success) / 0.4);
+  }
+
+  .glow-destructive {
+    box-shadow: 0 0 40px -10px hsl(var(--destructive) / 0.4);
+  }
+
+  /* Animated gradient border */
+  .gradient-border {
+    position: relative;
+    background: hsl(var(--card));
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.5), hsl(var(--primary) / 0.1));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /* Price change animations */
+  @keyframes price-up {
+    0% { color: hsl(var(--foreground)); }
+    50% { color: hsl(var(--success)); text-shadow: 0 0 20px hsl(var(--success) / 0.5); }
+    100% { color: hsl(var(--foreground)); }
+  }
+
+  @keyframes price-down {
+    0% { color: hsl(var(--foreground)); }
+    50% { color: hsl(var(--destructive)); text-shadow: 0 0 20px hsl(var(--destructive) / 0.5); }
+    100% { color: hsl(var(--foreground)); }
+  }
+
+  .price-flash-up {
+    animation: price-up 0.6s ease-out;
+  }
+
+  .price-flash-down {
+    animation: price-down 0.6s ease-out;
+  }
+
+  /* Pulse animation for live indicators */
+  @keyframes pulse-live {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.1); }
+  }
+
+  .pulse-live {
+    animation: pulse-live 2s ease-in-out infinite;
+  }
+
+  /* Shimmer loading effect */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 25%,
+      hsl(var(--muted-foreground) / 0.15) 50%,
+      hsl(var(--muted)) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Float animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Chart candlestick styles */
+  .candle-bullish {
+    fill: hsl(var(--chart-bullish));
+  }
+
+  .candle-bearish {
+    fill: hsl(var(--chart-bearish));
+  }
+
+  /* Confidence badge styles */
+  .confidence-high {
+    @apply bg-success/15 text-success border-success/25;
+  }
+
+  .confidence-medium {
+    @apply bg-warning/15 text-warning border-warning/25;
+  }
+
+  .confidence-low {
+    @apply bg-destructive/15 text-destructive border-destructive/25;
+  }
+
+  /* Enhanced card hover effects */
+  .card-interactive {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .card-interactive:hover {
+    @apply border-primary/20;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover), 0 0 40px -15px hsl(var(--primary) / 0.15);
+  }
+
+  /* Metric card styles */
+  .metric-card {
+    @apply relative overflow-hidden premium-card;
+  }
+
+  /* Navigation active state */
+  .nav-active {
+    @apply bg-primary/10 text-primary;
+    box-shadow: inset 0 -2px 0 hsl(var(--primary));
+  }
+
+  /* Trading button styles */
+  .btn-buy {
+    @apply bg-success hover:bg-success/90 text-success-foreground font-semibold;
+    box-shadow: 0 4px 14px -3px hsl(var(--success) / 0.4);
+  }
+
+  .btn-buy:hover {
+    box-shadow: 0 6px 20px -3px hsl(var(--success) / 0.5);
+  }
+
+  .btn-sell {
+    @apply bg-destructive hover:bg-destructive/90 text-destructive-foreground font-semibold;
+    box-shadow: 0 4px 14px -3px hsl(var(--destructive) / 0.4);
+  }
+
+  .btn-sell:hover {
+    box-shadow: 0 6px 20px -3px hsl(var(--destructive) / 0.5);
+  }
+
+  /* Section header */
+  .section-header {
+    @apply text-xs font-semibold uppercase tracking-wider text-muted-foreground;
+  }
+
+  /* Data row hover */
+  .data-row {
+    @apply transition-colors duration-150;
+  }
+
+  .data-row:hover {
+    @apply bg-muted/40;
+  }
+}
+
+@layer utilities {
+  /* Numeric font for prices */
+  .font-mono-numbers {
+    font-variant-numeric: tabular-nums;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  /* Text gradient */
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(45 93% 60%), hsl(38 92% 50%));
+  }
+
+  .text-gradient-success {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(142 71% 50%), hsl(142 71% 40%));
+  }
+
+  /* Backdrop blur for overlays */
+  .backdrop-blur-card {
+    backdrop-filter: blur(20px);
+  }
+
+  /* Subtle text shadow for emphasis */
+  .text-glow {
+    text-shadow: 0 0 30px hsl(var(--primary) / 0.3);
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
